@@ -1,1 +1,70 @@
 @import 'tailwindcss';
+
+@property --r2 {
+	syntax: '<angle>';
+	inherits: false;
+	initial-value: 0deg;
+}
+@property --x {
+	syntax: '<percentage>';
+	inherits: false;
+	initial-value: 0%;
+}
+
+.loading {
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+	color: white; /* Ensures text/icon visibility */
+}
+
+.loading::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: conic-gradient(
+		from calc(var(--r2) - 90deg) at var(--x) 50%,
+		rgba(0, 128, 255, 0.3) 0%,
+		/* Vibrant blue gradient */ white 10%,
+		rgba(0, 128, 255, 0.3) 20%
+	);
+	border-radius: inherit;
+	animation:
+		x 5s linear infinite,
+		rotating2 5s linear infinite;
+	z-index: 0;
+}
+
+.loading::after {
+	content: '';
+	position: absolute;
+	inset: 2px;
+	background-color: rgb(87, 171, 255); /* Sky-500 OKLCH converted to RGB */
+	border-radius: inherit;
+	z-index: 1;
+}
+
+@keyframes x {
+	0%,
+	100% {
+		--x: 5%;
+	}
+	32.82%,
+	50% {
+		--x: 90%;
+	}
+}
+
+@keyframes rotating2 {
+	0%,
+	32.82% {
+		--r2: 0deg;
+	}
+	50%,
+	82.82% {
+		--r2: 180deg;
+	}
+	100% {
+		--r2: 360deg;
+	}
+}
