@@ -1,5 +1,29 @@
 @import 'tailwindcss';
 
+@keyframes valued-partners-infinite-scroll {
+	to {
+		transform: translateX(calc(-50% - 10px));
+	}
+}
+
+@keyframes valued-partners-infinite-scroll-lg-desktop {
+	to {
+		transform: translateX(calc(-50% - 65px));
+	}
+}
+
+@utility animate-valued-partners-infinite-scroll {
+	animation: valued-partners-infinite-scroll 60s linear infinite;
+}
+
+@utility animate-valued-partners-infinite-scroll-lg-desktop {
+	animation: valued-partners-infinite-scroll-lg-desktop 60s linear infinite;
+}
+
+@utility animate-valued-partners-infinite-scroll-reverse {
+	animation: valued-partners-infinite-scroll 30s linear infinite reverse;
+}
+
 @property --r2 {
 	syntax: '<angle>';
 	inherits: false;
@@ -15,7 +39,7 @@
 	position: relative;
 	overflow: hidden;
 	isolation: isolate;
-	color: white; /* Ensures text/icon visibility */
+	color: white;
 }
 
 .loading::before {
@@ -67,4 +91,16 @@
 	100% {
 		--r2: 360deg;
 	}
+}
+
+@theme {
+	--breakpoint-lg-mobile: 425px;
+	--breakpoint-xl-mobile: 500px;
+	--breakpoint-xs-tablet: 650px;
+	--breakpoint-sm-tablet: 700px;
+	--breakpoint-lg-tablet: 850px;
+	--breakpoint-xl-tablet: 975px;
+	--breakpoint-sm-desktop: 1200px;
+	--breakpoint-lg-desktop: 1440px;
+	--breakpoint-xl-desktop: 1700px;
 }

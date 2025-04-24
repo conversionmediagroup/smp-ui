@@ -19,7 +19,7 @@
 	>
 		<div
 			class={cn(
-				'ring-opacity-50 relative flex w-[40px] transform items-center justify-center overflow-hidden  rounded-full ring-0 ring-gray-500 transition-all duration-200'
+				'ring-opacity-50  relative flex w-[40px] transform items-center justify-center overflow-hidden  rounded-full ring-0 ring-gray-500 transition-all duration-200'
 			)}
 		>
 			<div

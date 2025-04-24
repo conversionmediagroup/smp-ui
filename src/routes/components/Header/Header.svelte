@@ -4,6 +4,7 @@
 	import logo from '../../../../static/assets/smp-logo.svg';
 	import MobileMenuBtn from './MobileMenuBtn.svelte';
 	import { cn } from '$lib/ultils';
+	import SmpLogo from './SMPLogo.svelte';
 
 	const navItems = [
 		{ name: 'Home', href: '#' },
@@ -32,16 +33,16 @@
 
 <header
 	class={cn(
-		'sticky top-0 z-10 m-2 rounded-full px-2 shadow-sm transition-colors duration-300',
-		isScrolled ? 'bg-blue-500/80 backdrop-blur-md' : 'bg-blue-500'
+		'sticky top-0 z-20 border-b-2 border-white bg-blue-600 p-2 px-4 shadow-sm duration-300 lg:px-8'
 	)}
 >
-	<div class="flex justify-between p-1">
+	<div class="flex justify-between">
 		<div class="flex items-center">
-			<img src={logo} alt="School Match Pro logo" class="scale-70" />
+			<img src={logo} alt="School Match Pro logo" class="scale-70 md:hidden" />
+			<SmpLogo fillColor="white" />
 		</div>
 
-		<!-- <MobileMenuBtn bind:menuButton /> -->
+		<MobileMenuBtn bind:menuButton />
 
 		<!-- <nav class="hidden space-x-8 md:flex">
 			{#each navItems as item}
