@@ -1,20 +1,12 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import logo from '../../../../static/assets/smp-logo.svg';
 	import MobileMenuBtn from './MobileMenuBtn.svelte';
 	import { cn } from '$lib/ultils';
 	import SmpLogo from './SMPLogo.svelte';
 
-	const navItems = [
-		{ name: 'Home', href: '#' },
-		{ name: 'Programs', href: '#' },
-		{ name: 'About Us', href: '#' },
-		{ name: 'Contact', href: '#' }
-	];
-
 	let mobileMenuOpen = false;
-	let isScrolled = false;
+
 	let menuButton: HTMLDivElement;
 
 	function toggleMobileMenu() {
@@ -37,33 +29,21 @@
 	)}
 >
 	<div class="flex justify-between">
-		<div class="flex items-center">
-			<img src={logo} alt="School Match Pro logo" class="scale-70 md:hidden" />
-			<SmpLogo fillColor="white" />
-		</div>
+		<a
+			href="/"
+			class="focus-visible:ring-opacity-75 flex items-center transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+			aria-label="Go to homepage"
+		>
+			<div class="flex items-center">
+				<img
+					src={logo || '/placeholder.svg'}
+					alt="School Match Pro logo"
+					class="scale-70 md:hidden"
+				/>
+				<SmpLogo fillColor="white" />
+			</div>
+		</a>
 
 		<MobileMenuBtn bind:menuButton />
-
-		<!-- <nav class="hidden space-x-8 md:flex">
-			{#each navItems as item}
-				<a href={item.href} class="font-medium text-gray-600 hover:text-blue-600">
-					{item.name}
-				</a>
-			{/each}
-		</nav> -->
 	</div>
-
-	<!-- {#if mobileMenuOpen}
-		<nav class="mt-4 border-t pt-4 pb-2 md:hidden" transition:fade={{ duration: 200 }}>
-			<ul class="space-y-3">
-				{#each navItems as item}
-					<li>
-						<a href={item.href} class="block font-medium text-gray-600 hover:text-blue-600">
-							{item.name}
-						</a>
-					</li>
-				{/each}
-			</ul>
-		</nav>
-	{/if} -->
 </header>

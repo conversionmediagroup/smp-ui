@@ -20,6 +20,8 @@
 		MapPin
 	} from 'lucide-svelte';
 	import confetti from 'canvas-confetti';
+	import Header from '../components/Header/Header.svelte';
+	import Footer from '../components/Footer/Footer.svelte';
 
 	// Form state management
 	let currentStep = 0;
@@ -394,10 +396,9 @@
 	});
 </script>
 
-<section
-	class="relative mx-auto max-w-5xl overflow-hidden px-6 py-12 md:py-16"
-	id="application-form"
->
+<Header />
+
+<section class="relative mx-auto overflow-hidden px-6 py-12 md:py-16" id="application-form">
 	<!-- Decorative elements -->
 	<div
 		class="absolute top-0 right-0 -z-10 h-96 w-96 rounded-full bg-blue-50 opacity-70 blur-[100px]"
@@ -431,7 +432,7 @@
 
 	<!-- Progress bar (only show after welcome screen) -->
 	{#if visible && !formSubmitted && !showWelcome && currentStep > 0}
-		<div in:fly={{ y: 20, duration: 600 }} class="mb-10">
+		<div in:fly={{ y: 20, duration: 600 }} class="mx-auto mb-10 max-w-[1200px]">
 			<div class="mb-2 flex items-center justify-between">
 				<span class="text-sm font-medium text-gray-500"
 					>Step {currentStep} of {steps.length - 1}</span
@@ -489,7 +490,9 @@
 
 	<!-- Form content -->
 	{#if visible && !formSubmitted}
-		<div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:p-8">
+		<div
+			class="mx-auto max-w-[1200px] rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:p-8"
+		>
 			{#if currentStep === 0 && showWelcome}
 				<!-- Welcome Screen -->
 				<div in:fly={{ y: 20, duration: 300, delay: 200 }} class="w-full py-8 text-center">
@@ -1098,7 +1101,7 @@
 	{#if visible && !formSubmitted}
 		<div
 			in:fade={{ duration: 800, delay: 400 }}
-			class="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-6"
+			class="mx-auto mt-8 max-w-[1200px] rounded-xl border border-gray-200 bg-gray-50 p-6"
 		>
 			<div
 				class="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left"
@@ -1123,6 +1126,8 @@
 		</div>
 	{/if}
 </section>
+
+<Footer />
 
 <style>
 	/* Optional: Add these animations if not already in your global styles */
