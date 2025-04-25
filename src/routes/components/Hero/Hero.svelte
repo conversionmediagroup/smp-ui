@@ -1,6 +1,6 @@
 <script lang="ts">
-	import HeroImg from '$lib/assets/test.jpg';
 	import { onMount } from 'svelte';
+	import ImageCarousel from './ImageCarousel.svelte';
 
 	let isLoaded = false;
 
@@ -14,7 +14,6 @@
 <section
 	class="relative overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-50 py-12 lg:min-h-[700px] lg:py-20"
 >
-	<!-- Decorative elements -->
 	<div class="absolute top-20 left-10 h-64 w-64 rounded-full bg-blue-300/10 blur-3xl"></div>
 	<div class="absolute right-10 bottom-10 h-80 w-80 rounded-full bg-indigo-300/10 blur-3xl"></div>
 
@@ -53,7 +52,6 @@
 						? 'translate-y-0 opacity-100'
 						: 'translate-y-4 opacity-0'}"
 				>
-					<!-- Original button restored -->
 					<button
 						class="loading w-[50vw] max-w-[200px] cursor-pointer rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 py-1.5 text-white shadow-md transition-all duration-300 hover:scale-[1.02] sm:py-2 md:py-2.5 lg:mx-0"
 					>
@@ -72,33 +70,7 @@
 				<div
 					class="relative mx-auto max-w-lg overflow-hidden rounded-2xl shadow-2xl lg:ml-auto lg:max-w-3xl"
 				>
-					<div
-						class="absolute inset-0 z-10 bg-gradient-to-tr from-blue-500/20 to-indigo-500/20 mix-blend-overlay"
-					></div>
-					<img
-						src={HeroImg || '/placeholder.svg'}
-						alt="School Match Pro"
-						class="h-auto w-full object-cover transition-transform duration-700 hover:scale-105 lg:h-[500px]"
-					/>
-
-					<!-- Floating elements -->
-					<div
-						class="absolute top-4 right-4 z-20 rotate-3 transform rounded-lg bg-white/90 p-2 shadow-lg backdrop-blur-sm"
-					>
-						<div class="flex items-center gap-2">
-							<div class="h-3 w-3 rounded-full bg-blue-500"></div>
-							<span class="text-xs font-medium text-slate-800">Top Rated</span>
-						</div>
-					</div>
-
-					<div
-						class="absolute bottom-4 left-4 z-20 -rotate-2 transform rounded-lg bg-white/90 p-2 shadow-lg backdrop-blur-sm"
-					>
-						<div class="flex items-center gap-2">
-							<div class="h-3 w-3 rounded-full bg-indigo-500"></div>
-							<span class="text-xs font-medium text-slate-800">1000+ Schools</span>
-						</div>
-					</div>
+					<ImageCarousel />
 				</div>
 			</div>
 		</div>

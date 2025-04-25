@@ -15,51 +15,44 @@
 	let visible = false;
 	let activeTab = 0;
 
-	// Updated partners array to use the imported images
 	const partners = [
 		{
-			name: 'Higher Learning Commission',
-			logo: p1,
-			description: 'Regional accreditation agency'
+			name: 'Arizona State University',
+			logo: p1
 		},
 		{
-			name: 'WASC Senior College',
-			logo: p2,
-			description: 'Accrediting Commission for Schools'
+			name: 'Keiser University',
+			logo: p2
 		},
 		{
-			name: 'Middle States Commission',
+			name: 'Northcentral University',
 			logo: p3,
 			description: 'Institutional quality assurance'
 		},
 		{
-			name: 'Council for Higher Education',
+			name: 'Liberty University',
 			logo: p4,
 			description: 'National advocate for academic quality'
 		},
 		{
-			name: 'Accreditation Council',
-			logo: p5,
-			description: 'Career education certification'
+			name: 'Keller of DeVry University',
+			logo: p5
 		},
 		{
-			name: 'Distance Education Accrediting',
-			logo: p6,
-			description: 'Online education standards'
+			name: 'University of Maryland',
+			logo: p6
 		},
 		{
-			name: 'National Education Association',
+			name: 'University of Massachusettes',
 			logo: p7,
 			description: 'Educational excellence advocate'
 		},
 		{
-			name: 'American Council on Education',
-			logo: p8,
-			description: 'Higher education leadership'
+			name: 'University of Massachusettes Amherst',
+			logo: p8
 		}
 	];
 
-	// Benefits of accreditation
 	const benefits = [
 		{
 			icon: Shield,
@@ -87,7 +80,6 @@
 		}
 	];
 
-	// Stats for the counter section
 	const stats = [
 		{ value: 1000, label: 'Accredited Schools', suffix: '+' },
 		{ value: 50000, label: 'Students Matched', suffix: '+' },
@@ -119,12 +111,10 @@
 	}
 
 	onMount(() => {
-		// Trigger animations after component mounts
 		setTimeout(() => {
 			visible = true;
 		}, 300);
 
-		// Optional: Add intersection observer for scroll-based animation
 		const observer = new IntersectionObserver(
 			(entries) => {
 				if (entries[0].isIntersecting) {
@@ -144,7 +134,6 @@
 		};
 	});
 
-	// Auto-rotate partners
 	let partnerIndex = 0;
 	let partnerInterval;
 
@@ -204,7 +193,6 @@
 			</div>
 		{/if}
 
-		<!-- Stats counter section -->
 		{#if visible}
 			<div
 				in:fly={{ y: 30, duration: 800, delay: 500 }}
@@ -221,7 +209,6 @@
 			</div>
 		{/if}
 
-		<!-- Benefits grid with enhanced cards -->
 		{#if visible}
 			<div class="mb-20 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 				{#each benefits as benefit, i}
@@ -229,7 +216,6 @@
 						in:fly={{ y: 30, duration: 800, delay: 600 + i * 100 }}
 						class="group relative overflow-hidden rounded-xl border border-blue-100 bg-white p-6 transition-all duration-300 hover:border-blue-200 hover:shadow-xl"
 					>
-						<!-- Decorative corner accent -->
 						<div
 							class="absolute -top-10 -right-10 h-20 w-20 rounded-full bg-blue-50 transition-all duration-300 group-hover:bg-blue-100"
 						></div>
@@ -295,12 +281,12 @@
 								class="mb-3 flex h-20 w-40 items-center justify-center overflow-hidden rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-blue-100 hover:shadow-md"
 							>
 								<img
-									src={partner.logo || '/placeholder.svg'}
+									src={partner.logo}
 									alt={partner.name}
-									class="h-auto max-h-full w-auto max-w-full object-contain grayscale transition-all duration-300 group-hover:grayscale-0"
+									class="h-auto max-h-full scale-[1.1] object-contain transition-all duration-300"
 								/>
 							</div>
-							<span class="text-center text-xs text-gray-500">{partner.name}</span>
+							<span class="w-[150px] text-center text-xs text-gray-500">{partner.name}</span>
 						</div>
 					{/each}
 				</div>

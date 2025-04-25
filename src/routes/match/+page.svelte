@@ -331,14 +331,12 @@
 		}
 	}
 
-	// Go to previous step
 	function prevStep() {
 		if (currentStep > 0) {
 			currentStep--;
 		}
 	}
 
-	// Go to specific step
 	function goToStep(index) {
 		// Only allow going to completed steps or the next available step
 		if (index <= currentStep || (validateCurrentStep() && index === currentStep + 1)) {
@@ -346,18 +344,15 @@
 		}
 	}
 
-	// Submit the form
 	async function submitForm() {
 		if (validateCurrentStep()) {
 			formSubmitting = true;
 
-			// Simulate API call
 			await new Promise((resolve) => setTimeout(resolve, 1500));
 
 			formSubmitting = false;
 			formSubmitted = true;
 
-			// Trigger confetti after a short delay
 			setTimeout(() => {
 				const confettiCanvas = document.getElementById('confetti-canvas');
 				if (confettiCanvas) {
@@ -366,14 +361,12 @@
 						useWorker: true
 					});
 
-					// Fire confetti
 					myConfetti({
 						particleCount: 100,
 						spread: 70,
 						origin: { y: 0.6 }
 					});
 
-					// Fire another burst after a delay
 					setTimeout(() => {
 						myConfetti({
 							particleCount: 50,
@@ -383,7 +376,6 @@
 						});
 					}, 250);
 
-					// Fire another burst from the other side
 					setTimeout(() => {
 						myConfetti({
 							particleCount: 50,
