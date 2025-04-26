@@ -86,15 +86,8 @@
 		></div>
 	{/if}
 
-	<!-- Accent line -->
-	<div
-		in:scale={{ duration: 1000, start: 0.8, opacity: 0 }}
-		class="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-sky-300 via-blue-400 to-sky-300"
-	></div>
-
 	<div class="container mx-auto px-4">
 		<div class="grid grid-cols-1 gap-12 md:grid-cols-3">
-			<!-- Company Info -->
 			{#if visible}
 				<div in:fly={{ y: 20, duration: 800, delay: 300 }} class="relative z-10">
 					<div class="mb-6">
