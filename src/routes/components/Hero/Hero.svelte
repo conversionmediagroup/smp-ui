@@ -57,7 +57,6 @@
 		transition:fade={{ duration: 300, easing: cubicOut }}
 		class="fixed inset-0 z-50 overflow-hidden bg-gradient-to-br from-blue-800 via-blue-600 to-blue-400"
 	>
-		<!-- Particles -->
 		{#each particles as particle, i}
 			<div
 				class="absolute rounded-full bg-white"
@@ -74,7 +73,6 @@
 		{/each}
 
 		<div class="absolute inset-0 flex flex-col items-center justify-center">
-			<!-- Company Logo -->
 			<div
 				in:scale={{ duration: 800, delay: 200, easing: elasticOut, start: 0.5 }}
 				class="mb-6 scale-150"
@@ -148,12 +146,10 @@
 <section
 	class="relative overflow-hidden bg-gradient-to-br from-sky-700 to-blue-900 py-12 lg:min-h-[700px] lg:py-20"
 >
-	<!-- Decorative elements -->
 	<div class="absolute top-20 left-10 h-64 w-64 rounded-full bg-blue-400/20 blur-3xl"></div>
 	<div class="absolute right-10 bottom-10 h-80 w-80 rounded-full bg-sky-400/20 blur-3xl"></div>
 	<div class="absolute top-1/2 left-1/3 h-40 w-40 rounded-full bg-cyan-300/10 blur-2xl"></div>
 
-	<!-- Animated background particles -->
 	<div class="absolute inset-0 overflow-hidden">
 		{#each Array(8) as _, i}
 			<div
@@ -208,7 +204,6 @@
 						on:click={handleGetStarted}
 						class="loading group relative w-[50vw] max-w-[200px] cursor-pointer overflow-hidden rounded-full bg-gradient-to-r from-sky-400 to-blue-500 py-1.5 text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-blue-300/30 sm:py-2 md:py-2.5 lg:mx-0"
 					>
-						<!-- Button shine effect -->
 						<span
 							class="group-hover:animate-shine absolute inset-0 h-full w-full -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
 						></span>
@@ -250,7 +245,6 @@
 </section>
 
 <style>
-	/* Add any additional custom styles here */
 	@keyframes float {
 		0% {
 			transform: translateY(0px) rotate(0deg);
@@ -296,7 +290,6 @@
 		animation: shine 1.5s ease-in-out infinite;
 	}
 
-	/* Add glass effect for modern look */
 	.backdrop-blur-sm {
 		backdrop-filter: blur(4px);
 	}

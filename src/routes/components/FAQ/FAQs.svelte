@@ -5,13 +5,11 @@
 	import * as Accordion from '$lib/shadcn/accordion/index';
 	import { MessageSquareMore, Search, ChevronRight, Filter, X } from 'lucide-svelte';
 
-	// Animation and interaction state
 	let visible = false;
 	let searchQuery = '';
 	let activeCategory = 'all';
 	let isSearchFocused = false;
 
-	// Categories for filtering
 	const categories = [
 		{ id: 'all', name: 'All Questions' },
 		{ id: 'matching', name: 'Matching Process' },
@@ -20,7 +18,6 @@
 		{ id: 'application', name: 'Applications' }
 	];
 
-	// FAQ items with categories
 	const allFaqItems = [
 		{
 			question: 'How does School Match Pro find the right schools for me?',
@@ -84,7 +81,6 @@
 		}
 	];
 
-	// Filtered FAQ items based on search and category
 	$: filteredFaqItems = allFaqItems.filter((item) => {
 		const matchesSearch =
 			searchQuery === '' ||
@@ -96,12 +92,10 @@
 		return matchesSearch && matchesCategory;
 	});
 
-	// Set category filter
 	function setCategory(categoryId) {
 		activeCategory = categoryId;
 	}
 
-	// Clear search
 	function clearSearch() {
 		searchQuery = '';
 	}
@@ -112,7 +106,6 @@
 </script>
 
 <section class="relative mx-auto max-w-5xl overflow-hidden px-6 py-24" id="faq">
-	<!-- Decorative elements -->
 	<div
 		class="absolute top-0 right-0 -z-10 h-96 w-96 rounded-full bg-blue-50 opacity-70 blur-[100px]"
 	></div>
@@ -120,12 +113,10 @@
 		class="absolute bottom-0 left-0 -z-10 h-96 w-96 rounded-full bg-indigo-50 opacity-70 blur-[100px]"
 	></div>
 
-	<!-- Subtle pattern overlay -->
 	<div
 		class="absolute inset-0 -z-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTM2IDM0YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNMjQgMzBjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMi43OSA0IDQgNCA0LTEuNzkgNC00em0yNCAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-[0.03]"
 	></div>
 
-	<!-- Header -->
 	{#if visible}
 		<div in:fade={{ duration: 800 }} class="mb-16 text-center">
 			<div

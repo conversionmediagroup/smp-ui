@@ -153,7 +153,7 @@
 </script>
 
 <section
-	id="accredited-section"
+	id="why-choose-us"
 	class="relative overflow-hidden bg-gradient-to-b from-white to-blue-50 py-20"
 >
 	<div class="absolute top-0 left-0 h-64 w-64 rounded-full bg-blue-100/30 blur-3xl"></div>
@@ -243,7 +243,7 @@
 		{/if}
 
 		{#if visible}
-			<div in:fade={{ duration: 800, delay: 1000 }} class="mb-20 py-10">
+			<div in:fade={{ duration: 800, delay: 1000 }} class="mb-20 py-10" id="school-partners">
 				<div class="mb-12 text-center">
 					<div
 						in:scale={{ duration: 600, start: 0.8 }}
@@ -394,7 +394,6 @@
 </section>
 
 <style>
-	/* Add custom styles */
 	@keyframes float {
 		0% {
 			transform: translateY(0px);
