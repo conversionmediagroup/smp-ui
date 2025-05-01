@@ -150,14 +150,9 @@
 								class="group mb-4 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-blue-200 hover:shadow-md"
 							>
 								<Accordion.Trigger
-									class="group flex w-full items-center justify-between p-3 text-left text-sm text-gray-800"
+									class="group flex w-full cursor-pointer items-center justify-between p-3 text-left text-sm text-gray-800"
 								>
 									<span class="transition-colors duration-200">{item.question}</span>
-									<!-- <div
-										class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-all duration-300 group-hover:bg-blue-100 group-hover:text-blue-600 group-data-[state=open]:rotate-90 group-data-[state=open]:bg-blue-100 group-data-[state=open]:text-blue-600"
-									>
-										<ChevronRight size={18} class="transition-transform duration-300" />
-									</div> -->
 								</Accordion.Trigger>
 								<Accordion.Content
 									class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down max-w-[750px] overflow-hidden"
@@ -180,28 +175,6 @@
 						{/each}
 					</Accordion.Root>
 				</div>
-			{:else}
-				<div
-					in:scale={{ duration: 300 }}
-					class="rounded-2xl border border-gray-200 bg-gray-50 py-16 text-center"
-				>
-					<div
-						class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100"
-					>
-						<Search size={24} class="text-blue-600" />
-					</div>
-					<h3 class="mb-2 text-xl font-semibold text-gray-800">No questions found</h3>
-					<p class="mb-6 text-gray-500">We couldn't find any questions matching "{searchQuery}"</p>
-					<button
-						on:click={() => {
-							searchQuery = '';
-							activeCategory = 'all';
-						}}
-						class="inline-flex items-center rounded-full bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
-					>
-						Clear all filters
-					</button>
-				</div>
 			{/if}
 		</div>
 	{/if}
@@ -222,7 +195,6 @@
 </section>
 
 <style>
-	/* Optional: Add these animations if not already in your global styles */
 	@keyframes accordion-down {
 		from {
 			height: 0;
@@ -249,7 +221,6 @@
 		animation: accordion-up 0.2s ease-out;
 	}
 
-	/* Added styles for accordion content width */
 	:global(.data-[state='open']:animate-accordion-down) {
 		width: 100%;
 		max-width: 100%;

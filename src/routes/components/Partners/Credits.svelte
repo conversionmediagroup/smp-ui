@@ -375,7 +375,7 @@
 									</div>
 
 									<button
-										class="w-full rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 py-3 font-medium text-white transition-all hover:shadow-lg"
+										class="w-full cursor-pointer rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 py-3 font-medium text-white transition-all hover:shadow-lg"
 									>
 										Stay connected
 									</button>

@@ -69,7 +69,7 @@
 	});
 </script>
 
-<footer class="relative mt-auto overflow-hidden bg-blue-600 pt-16 pb-8 text-white shadow-sm">
+<footer class="relative mt-auto overflow-hidden bg-blue-600 py-8 text-white shadow-md">
 	<!-- Decorative elements with Svelte transitions -->
 	{#if visible}
 		<div
@@ -87,52 +87,30 @@
 	{/if}
 
 	<div class="container mx-auto px-4">
-		<div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+		<div class="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-3">
 			{#if visible}
+				<!-- Company Info -->
 				<div in:fly={{ y: 20, duration: 800, delay: 300 }} class="relative z-10">
-					<div class="mb-6">
+					<div class="mb-3 max-w-[160px]">
 						<SmpLogo fillColor="white" />
 					</div>
-					<p class="mb-6 text-white">
+					<p class="text-sm leading-relaxed text-white/90">
 						Connecting prospective students with top accredited colleges and universities across the
 						United States.
 					</p>
-					<!-- <div class="flex space-x-4">
-						<a
-							href="#"
-							class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-blue-500 text-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-200"
-						>
-							<Facebook size={20} />
-							<span class="sr-only">Facebook</span>
-						</a>
-						<a
-							href="#"
-							class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-blue-500 text-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-200"
-						>
-							<Twitter size={20} />
-							<span class="sr-only">Twitter</span>
-						</a>
-						<a
-							href="#"
-							class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-blue-500 text-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-200"
-						>
-							<Linkedin size={20} />
-							<span class="sr-only">LinkedIn</span>
-						</a>
-					</div> -->
 				</div>
 			{/if}
 
 			<!-- Quick Links -->
 			{#if visible}
 				<div in:fly={{ y: 20, duration: 800, delay: 400 }} class="relative z-10">
-					<h3 class="mb-6 text-xl font-bold text-white">Quick Links</h3>
-					<ul class="space-y-3">
-						{#each ['Home', 'About Us', 'Programs', 'Partner Schools', 'Contact'] as item}
+					<h3 class="mb-3 text-base font-bold text-white">Quick Links</h3>
+					<ul class="grid grid-cols-1 gap-2">
+						{#each ['Home', 'About Us', 'Contact'] as item}
 							<li>
 								<a
 									href="#"
-									class="group flex items-center text-white/90 transition-all hover:text-white"
+									class="group flex items-center text-sm text-white/90 transition-all hover:text-white"
 								>
 									<span class="mr-2 h-1 w-0 rounded-full bg-blue-400 transition-all group-hover:w-3"
 									></span>
@@ -147,29 +125,30 @@
 			<!-- Contact -->
 			{#if visible}
 				<div in:fly={{ y: 20, duration: 800, delay: 500 }} class="relative z-10">
-					<h3 class="mb-6 text-xl font-bold text-white">Contact Us</h3>
-					<ul class="space-y-4 text-white">
+					<h3 class="mb-3 text-base font-bold text-white">Contact Us</h3>
+					<ul class="grid gap-2 text-sm text-white/90">
 						<li>
 							<a
 								href="mailto:info@schoolmatchpro.com"
-								class="group flex items-center transition-all"
+								class="group flex items-center transition-all hover:text-white"
 							>
-								<Mail size={18} class="mr-3 text-white transition-all group-hover:scale-110" />
+								<Mail size={14} class="mr-2 text-white transition-all group-hover:scale-110" />
 								<span class="group-hover:underline">info@schoolmatchpro.com</span>
 							</a>
 						</li>
 						<li>
-							<a href="tel:+18005551234" class="group flex items-center transition-all">
-								<Phone size={18} class="mr-3 text-white transition-all group-hover:scale-110" />
+							<a
+								href="tel:+18005551234"
+								class="group flex items-center transition-all hover:text-white"
+							>
+								<Phone size={14} class="mr-2 text-white transition-all group-hover:scale-110" />
 								<span class="group-hover:underline">(800) 555-1234</span>
 							</a>
 						</li>
 						<li class="flex">
-							<MapPin size={18} class="mt-1 mr-3 shrink-0 text-white" />
+							<MapPin size={14} class="mt-0.5 mr-2 shrink-0 text-white" />
 							<span>
-								123 Education Lane
-								<br />
-								Suite 100
+								123 Education Lane, Suite 100
 								<br />
 								San Francisco, CA 94107
 							</span>
@@ -181,20 +160,23 @@
 
 		<!-- Bottom section with copyright -->
 		{#if visible}
-			<div in:fly={{ y: 20, duration: 800, delay: 600 }} class="relative z-10 mt-12 pt-8">
+			<div in:fly={{ y: 20, duration: 800, delay: 600 }} class="relative z-10 mt-6 pt-4">
 				<div
 					class="absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent"
 				></div>
 
 				<div
-					class="flex flex-col items-center justify-between space-y-4 text-center md:flex-row md:space-y-0"
+					class="flex flex-col items-center justify-between space-y-2 text-center md:flex-row md:space-y-0"
 				>
-					<p class="text-sm text-white">
+					<p class="text-xs text-white/80">
 						© {new Date().getFullYear()} SchoolMatchPro. All rights reserved.
 					</p>
-					<div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+					<div class="flex flex-wrap justify-center gap-x-6 gap-y-1">
 						{#each ['Privacy Policy', 'Terms of Service'] as item}
-							<a href="#" class="text-sm text-white transition-all hover:underline">
+							<a
+								href="#"
+								class="text-xs text-white/80 transition-all hover:text-white hover:underline"
+							>
 								{item}
 							</a>
 						{/each}
@@ -210,10 +192,10 @@
 			on:click={scrollToTop}
 			in:scale
 			out:fade
-			class="fixed right-8 bottom-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-blue-500 text-white shadow-lg transition-all hover:shadow-blue-200/50"
+			class="fixed right-6 bottom-6 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-400 text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/20"
 			aria-label="Back to top"
 		>
-			<ChevronUp size={24} />
+			<ChevronUp size={18} />
 		</button>
 	{/if}
 </footer>

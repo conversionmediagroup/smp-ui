@@ -399,7 +399,6 @@
 <Header />
 
 <section class="relative mx-auto overflow-hidden px-6 py-12 md:py-16" id="application-form">
-	<!-- Decorative elements -->
 	<div
 		class="absolute top-0 right-0 -z-10 h-96 w-96 rounded-full bg-blue-50 opacity-70 blur-[100px]"
 	></div>
@@ -407,7 +406,6 @@
 		class="absolute bottom-0 left-0 -z-10 h-96 w-96 rounded-full bg-indigo-50 opacity-70 blur-[100px]"
 	></div>
 
-	<!-- Subtle pattern overlay -->
 	<div
 		class="absolute inset-0 -z-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTM2IDM0YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNMjQgMzBjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMi43OSA0IDQgNCA0LTEuNzkgNC00em0yNCAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-[0.03]"
 	></div>
@@ -430,7 +428,6 @@
 		</div>
 	{/if}
 
-	<!-- Progress bar (only show after welcome screen) -->
 	{#if visible && !formSubmitted && !showWelcome && currentStep > 0}
 		<div in:fly={{ y: 20, duration: 600 }} class="mx-auto mb-10 max-w-[1200px]">
 			<div class="mb-2 flex items-center justify-between">
@@ -488,13 +485,11 @@
 		</div>
 	{/if}
 
-	<!-- Form content -->
 	{#if visible && !formSubmitted}
 		<div
 			class="mx-auto max-w-[1200px] rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:p-8"
 		>
 			{#if currentStep === 0 && showWelcome}
-				<!-- Welcome Screen -->
 				<div in:fly={{ y: 20, duration: 300, delay: 200 }} class="w-full py-8 text-center">
 					<div
 						class="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-blue-100"
@@ -508,7 +503,7 @@
 					</p>
 					<button
 						on:click={startForm}
-						class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-3 text-base font-medium text-white shadow-md transition-all hover:bg-blue-700 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+						class="inline-flex cursor-pointer items-center justify-center rounded-lg bg-blue-600 px-8 py-3 text-base font-medium text-white shadow-md transition-all hover:bg-blue-700 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
 					>
 						Get Started
 						<ChevronRight size={18} class="ml-2" />
@@ -990,7 +985,7 @@
 				<div class="mt-8 flex justify-between">
 					<button
 						on:click={prevStep}
-						class="inline-flex items-center rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:opacity-50"
+						class="inline-flex cursor-pointer items-center rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:opacity-50"
 						disabled={currentStep === 0}
 					>
 						<ChevronLeft size={16} class="mr-1" />
@@ -999,7 +994,7 @@
 
 					<button
 						on:click={nextStep}
-						class="inline-flex items-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:opacity-50"
+						class="inline-flex cursor-pointer items-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:opacity-50"
 						disabled={formSubmitting}
 					>
 						{#if currentStep === steps.length - 1}
@@ -1081,12 +1076,6 @@
 			<div
 				class="relative z-10 flex flex-col justify-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3"
 			>
-				<a
-					href="/dashboard"
-					class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
-				>
-					View Full Results
-				</a>
 				<a
 					href="/"
 					class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-5 py-3 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
