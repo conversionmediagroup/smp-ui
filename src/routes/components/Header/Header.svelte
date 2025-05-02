@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
 	import { cn } from '$lib/ultils';
-	import logo from '../../../../static/assets/smp-logo.svg';
+
 	import SmpLogo from './SMPLogo.svelte';
+	import logo from '../../../../static/assets/smp-logo.svg';
 
 	let isScrolled = false;
 
@@ -46,11 +46,7 @@
 			aria-label="Go to homepage"
 		>
 			<div class="flex items-center">
-				<img
-					src={logo || '/placeholder.svg'}
-					alt="School Match Pro logo"
-					class="scale-70 sm:hidden"
-				/>
+				<img src={logo} alt="School Match Pro logo" class="scale-70 sm:hidden" />
 				<SmpLogo fillColor="white" />
 			</div>
 		</a>

@@ -1,14 +1,11 @@
 <script lang="ts">
-	import { onMount, tick } from 'svelte';
-	import { fade, fly, scale } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
+	import { onMount } from 'svelte';
+	import { fade, fly } from 'svelte/transition';
+
 	import * as Accordion from '$lib/shadcn/accordion/index';
-	import { MessageSquareMore, Search, ChevronRight, Filter, X } from 'lucide-svelte';
+	import { MessageSquareMore, ChevronRight, X } from 'lucide-svelte';
 
 	let visible = false;
-	let searchQuery = '';
-	let activeCategory = 'all';
-	let isSearchFocused = false;
 
 	const categories = [
 		{ id: 'all', name: 'All Questions' },
@@ -81,42 +78,12 @@
 		}
 	];
 
-	$: filteredFaqItems = allFaqItems.filter((item) => {
-		const matchesSearch =
-			searchQuery === '' ||
-			item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-			item.answer.toLowerCase().includes(searchQuery.toLowerCase());
-
-		const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
-
-		return matchesSearch && matchesCategory;
-	});
-
-	function setCategory(categoryId) {
-		activeCategory = categoryId;
-	}
-
-	function clearSearch() {
-		searchQuery = '';
-	}
-
 	onMount(() => {
 		visible = true;
 	});
 </script>
 
 <section class="relative mx-auto max-w-5xl overflow-hidden px-6 py-24" id="faq">
-	<div
-		class="absolute top-0 right-0 -z-10 h-96 w-96 rounded-full bg-blue-50 opacity-70 blur-[100px]"
-	></div>
-	<div
-		class="absolute bottom-0 left-0 -z-10 h-96 w-96 rounded-full bg-indigo-50 opacity-70 blur-[100px]"
-	></div>
-
-	<div
-		class="absolute inset-0 -z-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTM2IDM0YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNMjQgMzBjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMi43OSA0IDQgNCA0LTEuNzkgNC00em0yNCAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-[0.03]"
-	></div>
-
 	{#if visible}
 		<div in:fade={{ duration: 800 }} class="mb-16 text-center">
 			<div
@@ -141,41 +108,39 @@
 	<!-- FAQ Accordion -->
 	{#if visible}
 		<div in:fly={{ y: 20, duration: 800, delay: 200 }}>
-			{#if filteredFaqItems.length > 0}
-				<div class="grid gap-4">
-					<Accordion.Root type="multiple" class="w-full max-w-full">
-						{#each filteredFaqItems as item, index}
-							<Accordion.Item
-								value={`item-${index}`}
-								class="group mb-4 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-blue-200 hover:shadow-md"
+			<div class="grid gap-4">
+				<Accordion.Root type="multiple" class="w-full max-w-full">
+					{#each allFaqItems as item, index}
+						<Accordion.Item
+							value={`item-${index}`}
+							class="group mb-4 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-blue-200 hover:shadow-md"
+						>
+							<Accordion.Trigger
+								class="group flex w-full cursor-pointer items-center justify-between p-3 text-left text-sm text-gray-800"
 							>
-								<Accordion.Trigger
-									class="group flex w-full cursor-pointer items-center justify-between p-3 text-left text-sm text-gray-800"
-								>
-									<span class="transition-colors duration-200">{item.question}</span>
-								</Accordion.Trigger>
-								<Accordion.Content
-									class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down max-w-[750px] overflow-hidden"
-								>
-									<div class="w-full px-8 pt-0 pb-8">
-										<div class="mb-6 h-px w-full bg-gray-100"></div>
-										<p class="leading-relaxed text-gray-600">{item.answer}</p>
+								<span class="transition-colors duration-200">{item.question}</span>
+							</Accordion.Trigger>
+							<Accordion.Content
+								class="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down max-w-[750px] overflow-hidden"
+							>
+								<div class="w-full px-8 pt-0 pb-8">
+									<div class="mb-6 h-px w-full bg-gray-100"></div>
+									<p class="leading-relaxed text-gray-600">{item.answer}</p>
 
-										<!-- Category tag -->
-										<div class="mt-6 flex items-center">
-											<span
-												class="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700"
-											>
-												{categories.find((cat) => cat.id === item.category)?.name || 'General'}
-											</span>
-										</div>
+									<!-- Category tag -->
+									<div class="mt-6 flex items-center">
+										<span
+											class="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700"
+										>
+											{categories.find((cat) => cat.id === item.category)?.name || 'General'}
+										</span>
 									</div>
-								</Accordion.Content>
-							</Accordion.Item>
-						{/each}
-					</Accordion.Root>
-				</div>
-			{/if}
+								</div>
+							</Accordion.Content>
+						</Accordion.Item>
+					{/each}
+				</Accordion.Root>
+			</div>
 		</div>
 	{/if}
 

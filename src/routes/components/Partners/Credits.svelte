@@ -13,7 +13,6 @@
 	import p8 from '$lib/assets/partners/partner8.png';
 
 	let visible = false;
-	let activeTab = 0;
 
 	const partners = [
 		{
@@ -150,6 +149,70 @@
 	function setActiveTab(index) {
 		activeTab = index;
 	}
+
+	// Form validation
+	let email = '';
+	let educationLevel = '';
+	let formErrors = { email: '', educationLevel: '' };
+	let formTouched = { email: false, educationLevel: false };
+	let formSubmitted = false;
+
+	function validateEmail(email) {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return emailRegex.test(email);
+	}
+
+	function handleInputBlur(field) {
+		formTouched[field] = true;
+		validateField(field);
+	}
+
+	function validateField(field) {
+		if (field === 'email') {
+			if (!email) {
+				formErrors.email = 'Email is required';
+			} else if (!validateEmail(email)) {
+				formErrors.email = 'Please enter a valid email address';
+			} else {
+				formErrors.email = '';
+			}
+		} else if (field === 'educationLevel') {
+			if (!educationLevel) {
+				formErrors.educationLevel = 'Please select your education level';
+			} else {
+				formErrors.educationLevel = '';
+			}
+		}
+	}
+
+	function handleInputChange(field) {
+		if (formTouched[field]) {
+			validateField(field);
+		}
+	}
+
+	function handleSubmit(event) {
+		event.preventDefault();
+
+		// Mark all fields as touched
+		Object.keys(formTouched).forEach((field) => {
+			formTouched[field] = true;
+		});
+
+		// Validate all fields
+		validateField('email');
+		validateField('educationLevel');
+
+		// Check if form is valid
+		const isValid = !formErrors.email && !formErrors.educationLevel;
+
+		if (isValid) {
+			// Form is valid, submit it
+			formSubmitted = true;
+			console.log('Form submitted:', { email, educationLevel });
+			// Here you would typically send the data to your server
+		}
+	}
 </script>
 
 <section
@@ -281,7 +344,7 @@
 								class="mb-3 flex h-20 w-40 items-center justify-center overflow-hidden rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-blue-100 hover:shadow-md"
 							>
 								<img
-									src={partner.logo}
+									src={partner.logo || '/placeholder.svg'}
 									alt={partner.name}
 									class="h-auto max-h-full scale-[1.1] object-contain transition-all duration-300"
 								/>
@@ -342,28 +405,42 @@
 									Join our newsletter
 								</h4>
 
-								<!-- Simple form -->
-								<div class="space-y-4">
+								<!-- Converted to proper form with validation -->
+								<form on:submit={handleSubmit} class="space-y-4">
 									<div>
 										<label for="email" class="mb-1 block text-sm font-medium text-gray-700"
-											>Email</label
+											>Email *</label
 										>
 										<input
 											type="email"
 											id="email"
+											bind:value={email}
+											on:input={() => handleInputChange('email')}
+											on:blur={() => handleInputBlur('email')}
 											placeholder="your@email.com"
-											class="w-full rounded-lg border border-gray-300 p-3 text-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+											class="w-full rounded-lg border {formErrors.email && formTouched.email
+												? 'border-red-500'
+												: 'border-gray-300'} p-3 text-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
 										/>
+										{#if formErrors.email && formTouched.email}
+											<p class="mt-1 text-sm text-red-500">{formErrors.email}</p>
+										{/if}
 									</div>
 
 									<div>
 										<label
 											for="education-level"
-											class="mb-1 block text-sm font-medium text-gray-700">Education Level</label
+											class="mb-1 block text-sm font-medium text-gray-700">Education Level *</label
 										>
 										<select
 											id="education-level"
-											class="w-full rounded-lg border border-gray-300 p-3 text-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+											bind:value={educationLevel}
+											on:change={() => handleInputChange('educationLevel')}
+											on:blur={() => handleInputBlur('educationLevel')}
+											class="w-full rounded-lg border {formErrors.educationLevel &&
+											formTouched.educationLevel
+												? 'border-red-500'
+												: 'border-gray-300'} p-3 text-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
 										>
 											<option value="">Select your education level</option>
 											<option value="high-school">High School</option>
@@ -372,18 +449,28 @@
 											<option value="master">Master's Degree</option>
 											<option value="doctorate">Doctorate</option>
 										</select>
+										{#if formErrors.educationLevel && formTouched.educationLevel}
+											<p class="mt-1 text-sm text-red-500">{formErrors.educationLevel}</p>
+										{/if}
 									</div>
 
 									<button
+										type="submit"
 										class="w-full cursor-pointer rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 py-3 font-medium text-white transition-all hover:shadow-lg"
 									>
 										Stay connected
 									</button>
 
+									{#if formSubmitted}
+										<div class="rounded-md bg-green-50 p-3 text-center text-green-700">
+											Thank you for subscribing to our newsletter!
+										</div>
+									{/if}
+
 									<p class="text-center text-xs text-gray-500">
 										By submitting, you agree to our Terms of Service and Privacy Policy
 									</p>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
